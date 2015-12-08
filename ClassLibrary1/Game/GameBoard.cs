@@ -7,7 +7,7 @@ namespace ExesAndOhhs.Game
     {
         private string[,] _state;
 
-        public Stack<PlayerChoice> History { get; }
+        public Stack<PlayerChoice> History { get; private set; }
         public bool GameWon { get; set; }
         public char Winner { get; set; }
 
