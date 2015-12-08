@@ -49,12 +49,13 @@ namespace ExesAndOhhs
             while (!game.GameWon || iterations != 1000)
             {
                 var player = PickPlayer();
-                var choice = player.MakeSelection(game);
 
                 var turnAttempts = 0;
                 bool validTurn;
                 do
                 {
+                    var choice = player.MakeSelection(game);
+
                     validTurn = game.TakeTurn(_currentPlayer.Value, choice.X, choice.Y);
                     ProcessInvalidTurn(validTurn, player, game, choice, turnAttempts);
                     turnAttempts++;
