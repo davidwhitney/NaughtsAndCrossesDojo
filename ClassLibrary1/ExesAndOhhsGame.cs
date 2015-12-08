@@ -9,7 +9,7 @@ namespace ExesAndOhhs
     {
         public List<ITakeATurn> Players { get; }
         public ITakeATurn PlayerOh { get { return Players.Single(x => x.PlayerCharacter == 'o'); } }
-        public ITakeATurn PlayerEx { get { return Players.Single(x => x.PlayerCharacter == 'o'); } }
+        public ITakeATurn PlayerEx { get { return Players.Single(x => x.PlayerCharacter == 'x'); } }
 
         public ExesAndOhhsGame(ITakeATurn playerOh, ITakeATurn playerEx)
         {
@@ -99,7 +99,7 @@ namespace ExesAndOhhs
         private ITakeATurn PickPlayer()
         {
             var player = _currentPlayer.GetValueOrDefault('x') == 'x' ? PlayerOh : PlayerEx;
-            _currentPlayer = _currentPlayer.GetValueOrDefault('x') == 'x' ? 'o' : 'x';
+            _currentPlayer = player == PlayerOh ? 'o' : 'x';
             return player;
         }
     }
