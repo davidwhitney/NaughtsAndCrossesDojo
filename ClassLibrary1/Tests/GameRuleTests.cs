@@ -40,7 +40,7 @@ oo-");
   
             board.TakeTurn('o', 2, 0);
 
-            Assert.That(board.GameWon, Is.True);
+            Assert.That(board.GameEnded, Is.True);
         }
 
         [Test]
@@ -53,7 +53,7 @@ ox-
 
             board.TakeTurn('o', 0, 0);
 
-            Assert.That(board.GameWon, Is.True);
+            Assert.That(board.GameEnded, Is.True);
         }
 
         [Test]
@@ -66,7 +66,7 @@ xo-
 
             board.TakeTurn('o', 2, 0);
 
-            Assert.That(board.GameWon, Is.True);
+            Assert.That(board.GameEnded, Is.True);
         }
 
         [Test]
@@ -79,7 +79,7 @@ o--");
 
             board.TakeTurn('o', 2, 2);
 
-            Assert.That(board.GameWon, Is.True);
+            Assert.That(board.GameEnded, Is.True);
         }
 
         [Test]

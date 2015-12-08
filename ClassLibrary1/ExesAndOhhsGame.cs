@@ -46,7 +46,7 @@ namespace ExesAndOhhs
             var game = new GameBoard();
             var iterations = 0;
 
-            while (!game.GameWon || iterations != 1000)
+            while (!game.GameEnded || iterations != 1000)
             {
                 var player = PickPlayer();
 

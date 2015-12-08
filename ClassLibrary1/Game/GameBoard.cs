@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace ExesAndOhhs.Game
@@ -8,7 +9,7 @@ namespace ExesAndOhhs.Game
         private string[,] _state;
 
         public List<PlayerChoice> History { get; private set; }
-        public bool GameWon { get; set; }
+        public bool GameEnded { get; set; }
         public char Winner { get; set; }
 
         public GameBoard()
@@ -34,10 +35,26 @@ namespace ExesAndOhhs.Game
             History.Add(new PlayerChoice {NaughtOrCross = naughtOrCross, X = x, Y = y});
 
             var isThereAwinner = FindWinner();
-            GameWon = isThereAwinner != " ";
+            GameEnded = isThereAwinner != " ";
             Winner = isThereAwinner[0];
 
+            CheckForGameEnd();
+
             return true;
+        }
+
+        private void CheckForGameEnd()
+        {
+            var spacesLeft = true;
+            foreach (var item in AllPlaces.Where(item => item == "-" || item == null))
+            {
+                spacesLeft = false;
+            }
+
+            if (!spacesLeft)
+            {
+                GameEnded = true;
+            }
         }
 
         public bool CanMove(char naughtOrCross, int x, int y)
@@ -135,6 +152,11 @@ namespace ExesAndOhhs.Game
                 }
             }
         }
+
+        private IEnumerable<string> AllPlaces
+        {
+            get { return Rows.SelectMany(row => row); }
+        } 
 
         private void BoardFromState(string state)
         {
