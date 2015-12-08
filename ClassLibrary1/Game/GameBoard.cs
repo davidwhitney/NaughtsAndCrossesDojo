@@ -43,7 +43,7 @@ namespace ExesAndOhhs.Game
         public bool CanMove(char naughtOrCross, int x, int y)
         {
             if ((_state[y, x] == "-")
-                && History.LastOrDefault()?.NaughtOrCross != naughtOrCross)
+                && (History.LastOrDefault() == null || History.LastOrDefault().NaughtOrCross != naughtOrCross))
             {
                 return true;
             }
