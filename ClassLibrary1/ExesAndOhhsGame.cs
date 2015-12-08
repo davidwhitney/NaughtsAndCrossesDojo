@@ -56,7 +56,7 @@ namespace ExesAndOhhs
                 {
                     var choice = player.MakeSelection(game);
 
-                    validTurn = game.TakeTurn(_currentPlayer.Value, choice.X, choice.Y);
+                    validTurn = game.TakeTurn(player.PlayerCharacter, choice.X, choice.Y);
                     ProcessInvalidTurn(validTurn, player, game, choice, turnAttempts);
                     turnAttempts++;
 

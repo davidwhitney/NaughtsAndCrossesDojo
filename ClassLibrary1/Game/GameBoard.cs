@@ -48,7 +48,8 @@ namespace ExesAndOhhs.Game
                 return true;
             }
 
-            if (_state[y, x] == null && History.LastOrDefault() == null)
+            if (_state[y, x] == null 
+                && (History.LastOrDefault() == null || History.LastOrDefault().NaughtOrCross != naughtOrCross))
             {
                 return true;
             }
