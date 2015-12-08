@@ -7,14 +7,14 @@ namespace ExesAndOhhs.Game
     {
         private string[,] _state;
 
-        public Stack<PlayerChoice> History { get; private set; }
+        public List<PlayerChoice> History { get; private set; }
         public bool GameWon { get; set; }
         public char Winner { get; set; }
 
         public GameBoard()
         {
             _state = new string[3,3];
-            History = new Stack<PlayerChoice>();
+            History = new List<PlayerChoice>();
         }
 
         public GameBoard(string state) : this()
@@ -31,7 +31,7 @@ namespace ExesAndOhhs.Game
 
             _state[y, x] = naughtOrCross.ToString();
 
-            History.Push(new PlayerChoice {NaughtOrCross = naughtOrCross, X = x, Y = y});
+            History.Add(new PlayerChoice {NaughtOrCross = naughtOrCross, X = x, Y = y});
 
             var isThereAwinner = FindWinner();
             GameWon = isThereAwinner != " ";
