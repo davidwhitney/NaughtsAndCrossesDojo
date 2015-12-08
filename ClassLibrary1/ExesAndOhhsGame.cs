@@ -7,16 +7,19 @@ namespace ExesAndOhhs
 {
     public class ExesAndOhhsGame
     {
-        public Dictionary<char, ITakeATurn> Players { get; }
-        public ITakeATurn PlayerOh { get { return Players['o']; } }
-        public ITakeATurn PlayerEx { get { return Players['x']; } }
+        public List<ITakeATurn> Players { get; }
+        public ITakeATurn PlayerOh { get { return Players.Single(x => x.PlayerCharacter == 'o'); } }
+        public ITakeATurn PlayerEx { get { return Players.Single(x => x.PlayerCharacter == 'o'); } }
 
         public ExesAndOhhsGame(ITakeATurn playerOh, ITakeATurn playerEx)
         {
-            Players = new Dictionary<char, ITakeATurn>
+            playerOh.PlayerCharacter = 'o';
+            playerEx.PlayerCharacter = 'x';
+
+            Players = new List<ITakeATurn>
             {
-                ['o'] = playerOh,
-                ['x'] = playerEx
+                playerOh,
+                playerEx
             };
         }
 
@@ -74,8 +77,7 @@ namespace ExesAndOhhs
             
             if (turnAttempts == 500)
             {
-                var xoro = Players.Single(x => x.Value == player).Key;
-                throw new Exception(string.Format("Ai {0} can't work out the rules - made 500 invalid turns in a row. Choice: {1}", xoro, choice));
+                throw new Exception(string.Format("Ai {0} can't work out the rules - made 500 invalid turns in a row. Choice: {1}", player.PlayerCharacter, choice));
             }
         }
 
